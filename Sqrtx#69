@@ -1,0 +1,37 @@
+import time
+
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        if x == 0:
+            return 0
+        if x < 4:
+            return 1
+        if x < 4225:
+            return self.helper(1, x, x)
+        return self.helper2(x/4, x)
+
+    def helper(self, x: int, y: int, z: int) -> int:
+        c = (x + y) // 2
+        if c * c <= z:
+            if (c+1) * (c+1) > z:
+                return c
+            return self.helper(c + 1, y, z)
+        return self.helper(x, c - 1, z)
+
+    def helper2(self, x: float, y: int) -> int:
+        if (int(x) * int(x)) <= y:
+            return int(x)
+        else:
+            return self.helper2(x - (x * x - y) / 2 / x, y)
+
+def main():
+
+    t0 = time.time()
+    s = Solution()
+    for n in range(10000): (s.mySqrt(4223))
+    t1 = time.time()
+    print(t1 - t0)
+    pass
+
+if __name__ == '__main__':
+    main()
