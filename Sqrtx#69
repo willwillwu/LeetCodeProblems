@@ -2,11 +2,12 @@ import time
 
 class Solution:
     def mySqrt(self, x: int) -> int:
+        switch_to_newton = 4225
         if x == 0:
             return 0
         if x < 4:
             return 1
-        if x < 4225:
+        if x < switch_to_newton:
             return self.helper(1, x, x)
         return self.helper2(x/4, x)
 
