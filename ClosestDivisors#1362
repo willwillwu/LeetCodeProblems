@@ -1,0 +1,10 @@
+class Solution:
+    def closestDivisors(self, num: int) -> List[int]:
+        if num == 1:
+            return [1, 2]
+        for i in range((int)((num + 2) ** 0.5), 1, -1):
+            a = (num + 1) % i
+            if not a:
+                return [i, (num+1)//i]
+            if a == i - 1:
+                return [i, (num+2)//i]
